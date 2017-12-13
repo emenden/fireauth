@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app="myApp">
+<head>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCVcQzajjvvcgi7SKbJYqWtEMSo2fjhyXw",
+    authDomain: "fireauth-8ab3d.firebaseapp.com",
+    databaseURL: "https://fireauth-8ab3d.firebaseio.com",
+    projectId: "fireauth-8ab3d",
+    storageBucket: "",
+    messagingSenderId: "982245630483"
+  };
+  firebase.initializeApp(config);
+</script>
+
+<!-- AngularJS -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+<!-- Your Javascript -->
+<script src="javascripts/script.js"></script>
+<!-- CSS -->
+<link rel="stylesheet" href="stylesheets/main.css">
+</head>
+
+<body>
+
+<h1>CS 260 Chat Room</h1>
+
+<div ng-controller="chatController">
+<h2>Sign up to  chat with your friends!</h2>
+	<form class="sign-in-form">
+		Name: <input type="text" ng-model="user.name" /><br />
+		Password: <input type="text" ng-model="user.password" /><br />
+		Email: <input type="text" ng-model="user.email" /><br />
+		<button type="submit" ng-click="signup(user)">Sign up</button>
+	</form>
+<!--</div>
+
+<div ng-controller="chatController">-->
+<div ng-switch on="signedIn">
+	<div ng-switch-when="true">
+	<h2>Add to the Conversation!</h2>
+	<form novalidate class="simple-form">
+		What do you have to say? <input type="text" ng-model="user.chat" /><br />
+		<button type="submit" ng-click="update(user)">Chat this!</button>
+	</form>
+	<ul>
+	<li ng-repeat='line in chats'>
+		{{line.from}} : {{line.body}}
+	</li>
+	</ul>
+	</div>
+</div>
+</div>
+</body>
+</html>
